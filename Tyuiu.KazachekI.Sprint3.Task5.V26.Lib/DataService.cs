@@ -33,7 +33,8 @@ namespace Tyuiu.KazachekI.Sprint3.Task5.V26.Lib
                 totalSum += innerSum;
             }
 
-            return Math.Round(totalSum, 5);
+            // Округляем до 3 знаков после запятой как в ожидаемом результате 49146.884
+            return Math.Round(totalSum, 3);
         }
     }
 }

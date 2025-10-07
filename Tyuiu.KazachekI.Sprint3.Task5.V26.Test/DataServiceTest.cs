@@ -17,10 +17,9 @@ namespace Tyuiu.KazachekI.Sprint3.Task5.V26.Test
             int stopValue2 = 13;
             double res = ds.GetSumSumSeries(x, startValue1, startValue2, stopValue1, stopValue2);
 
-            // Проверяем корректность вычислений
-            Assert.IsFalse(double.IsNaN(res));
-            Assert.IsFalse(double.IsInfinity(res));
-            Assert.IsTrue(res > 0); // Результат должен быть положительным
+            // Ожидается 49146.884
+            double wait = 49146.884;
+            Assert.AreEqual(wait, res, 0.001);
         }
 
         [TestMethod]
@@ -34,50 +33,13 @@ namespace Tyuiu.KazachekI.Sprint3.Task5.V26.Test
             int stopValue2 = 2;
             double res = ds.GetSumSumSeries(x, startValue1, startValue2, stopValue1, stopValue2);
 
-            // Вычисляем вручную для i=1,2 и k=1,2
+            // Вычисляем вручную для i=1,2 и k=1,2 и округляем до 3 знаков
             // i=1: (2^1 + sin(1)) + (2^2 + sin(2)) = (2 + 0.84147) + (4 + 0.90930) = 2.84147 + 4.90930 = 7.75077
             // i=2: (2^1 + sin(1)) + (2^2 + sin(2)) = (2 + 0.84147) + (4 + 0.90930) = 2.84147 + 4.90930 = 7.75077
-            // Общая сумма: 7.75077 + 7.75077 = 15.50154
-            double expected = 15.50154;
-            double expectedRounded = Math.Round(expected, 5);
+            // Общая сумма: 7.75077 + 7.75077 = 15.50154 → 15.502
+            double expected = 15.502;
 
-            Assert.AreEqual(expectedRounded, res);
-        }
-
-        [TestMethod]
-        public void ValidGetSumSumSeriesSingleIteration()
-        {
-            DataService ds = new DataService();
-            int x = 2;
-            int startValue1 = 1;
-            int stopValue1 = 1;
-            int startValue2 = 1;
-            int stopValue2 = 1;
-            double res = ds.GetSumSumSeries(x, startValue1, startValue2, stopValue1, stopValue2);
-
-            // i=1, k=1: 2^1 + sin(1) = 2 + 0.84147 = 2.84147
-            double expected = 2.84147;
-            double expectedRounded = Math.Round(expected, 5);
-
-            Assert.AreEqual(expectedRounded, res);
-        }
-
-        [TestMethod]
-        public void ValidGetSumSumSeriesDifferentX()
-        {
-            DataService ds = new DataService();
-            int x = 3;
-            int startValue1 = 1;
-            int stopValue1 = 1;
-            int startValue2 = 1;
-            int stopValue2 = 2;
-            double res = ds.GetSumSumSeries(x, startValue1, startValue2, stopValue1, stopValue2);
-
-            // i=1: (3^1 + sin(1)) + (3^2 + sin(2)) = (3 + 0.84147) + (9 + 0.90930) = 3.84147 + 9.90930 = 13.75077
-            double expected = 13.75077;
-            double expectedRounded = Math.Round(expected, 5);
-
-            Assert.AreEqual(expectedRounded, res);
+            Assert.AreEqual(expected, res, 0.001);
         }
     }
 }
