@@ -31,7 +31,8 @@ namespace Tyuiu.KazachekI.Sprint3.Task4.V7.Lib
                 product *= y;
             }
 
-            return Math.Round(product, 5);
+            // Округляем до 3 знаков после запятой как в ожидаемом результате 1231.499
+            return Math.Round(product, 3);
         }
     }
 }
