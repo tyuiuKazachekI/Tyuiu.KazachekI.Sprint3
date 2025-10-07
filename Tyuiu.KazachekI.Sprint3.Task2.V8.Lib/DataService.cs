@@ -10,15 +10,15 @@ namespace Tyuiu.KazachekI.Sprint3.Task2.V8.Lib
             double product = 1.0;
             int k = startValue;
 
+            // Вычисляем константу один раз перед циклом
+            double cos5 = Math.Cos(5);
+            double denominator = cos5 + 1;
+            double term = 1.0 / Math.Pow(denominator, 2); // [1/(cos(5) + 1)]²
+
+            // Используем цикл do...while для вычисления произведения ряда
             do
             {
-                // Вычисляем 1/(cos(k) + 1)
-                double fraction = 1.0 / (Math.Cos(k) + 1);
-
-                // Возводим в степень k: [1/(cos(k) + 1)]^k
-                double term = Math.Pow(fraction, k);
-
-                // Умножаем на текущее произведение
+                // Умножаем на текущее произведение (одна и та же константа 15 раз)
                 product *= term;
 
                 k++;

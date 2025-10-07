@@ -16,42 +16,30 @@ namespace Tyuiu.KazachekI.Sprint3.Task2.V8.Test
 
             // Ожидается 0.001
             double wait = 0.001;
-            Assert.AreEqual(wait, res, 0.001); // Допуск 0.001
+            Assert.AreEqual(wait, res, 0.001);
         }
 
         [TestMethod]
-        public void ValidGetMultiplySeriesFirstTerm()
+        public void ValidGetMultiplySeriesCalculation()
         {
             DataService ds = new DataService();
             int startValue = 1;
-            int stopValue = 1;
+            int stopValue = 15;
             double res = ds.GetMultiplySeries(startValue, stopValue);
 
-            // k=1: 1/(cos(1) + 1)²
-            double cos1 = Math.Cos(1);
-            double denominatorSquared = Math.Pow(cos1 + 1, 2);
-            double expected = 1.0 / denominatorSquared;
-            double expectedRounded = Math.Round(expected, 3);
+            // Проверяем вычисление вручную:
+            // cos(5) ≈ 0.28366
+            // cos(5) + 1 ≈ 1.28366
+            // (cos(5) + 1)² ≈ 1.64778
+            // 1/(cos(5) + 1)² ≈ 0.60688
+            // (0.60688)^15 ≈ 0.00103
 
-            Assert.AreEqual(expectedRounded, res);
-        }
+            double cos5 = Math.Cos(5);
+            double denominator = cos5 + 1;
+            double term = 1.0 / Math.Pow(denominator, 2);
+            double expected = Math.Pow(term, 15); // Умножаем 15 раз = возводим в степень 15
 
-        [TestMethod]
-        public void ValidGetMultiplySeriesFirstTwoTerms()
-        {
-            DataService ds = new DataService();
-            int startValue = 1;
-            int stopValue = 2;
-            double res = ds.GetMultiplySeries(startValue, stopValue);
-
-            // k=1: 1/(cos(1) + 1)²
-            double term1 = 1.0 / Math.Pow(Math.Cos(1) + 1, 2);
-            // k=2: 1/(cos(2) + 1)²
-            double term2 = 1.0 / Math.Pow(Math.Cos(2) + 1, 2);
-            double expected = term1 * term2;
-            double expectedRounded = Math.Round(expected, 3);
-
-            Assert.AreEqual(expectedRounded, res);
+            Assert.AreEqual(Math.Round(expected, 3), res);
         }
     }
 }
