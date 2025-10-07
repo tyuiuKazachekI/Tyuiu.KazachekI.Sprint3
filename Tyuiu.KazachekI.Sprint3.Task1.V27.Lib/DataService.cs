@@ -1,6 +1,6 @@
 ﻿using System;
 using tyuiu.cources.programming.interfaces.Sprint3;
-using Tyuiu.Cources.Programming.Interfaces.Sprint3;
+
 
 namespace Tyuiu.KazachekI.Sprint3.Task1.V27.Lib
 {
