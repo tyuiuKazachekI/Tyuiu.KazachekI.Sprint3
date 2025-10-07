@@ -10,6 +10,7 @@ namespace Tyuiu.KazachekI.Sprint3.Task1.V27.Lib
             double product = 1.0;
             int k = startValue;
 
+            // Используем цикл while для вычисления произведения ряда
             while (k <= stopValue)
             {
                 // Вычисляем n^k
@@ -27,7 +28,8 @@ namespace Tyuiu.KazachekI.Sprint3.Task1.V27.Lib
                 k++;
             }
 
-            return Math.Round(product, 5);
+            // Округляем до 1 знака после запятой как в ожидаемом результате
+            return Math.Round(product, 1);
         }
     }
 }
